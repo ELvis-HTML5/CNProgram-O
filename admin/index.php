@@ -79,8 +79,8 @@
 
   if((isset($_POST['uname']))&&(isset($_POST['pw']))) {
     $_SESSION['poadmin']['display'] = $hide_logo;
-    $uname = mysql_real_escape_string(strip_tags(trim($_POST['uname'])));
-    $pw = mysql_real_escape_string(strip_tags(trim($_POST['pw'])));
+    $uname = mysql_escape_string(strip_tags(trim($_POST['uname'])));
+    $pw = mysql_escape_string(strip_tags(trim($_POST['pw'])));
     $dbconn = db_open();
     $sql = "SELECT * FROM `myprogramo` WHERE uname = '".$uname."' AND pword = '".MD5($pw)."'";
     $result = mysql_query($sql,$dbconn) or $msg .= SQL_Error(mysql_errno());

@@ -485,7 +485,7 @@ function find_userdefined_aiml($convoArr)
 	$allrows = array();
 	$bot_id = get_convo_var($convoArr,'conversation','bot_id');
 	$user_id = get_convo_var($convoArr,'conversation','user_id');
-	$lookingfor = mysql_real_escape_string(get_convo_var($convoArr,"aiml","lookingfor"));
+	$lookingfor = mysql_escape_string(get_convo_var($convoArr,"aiml","lookingfor"));
 	
 	//build sql
 	$sql = "SELECT * FROM `$dbn`.`aiml_userdefined` WHERE
@@ -586,14 +586,14 @@ function find_aiml_matches($convoArr){
 	$default_aiml_pattern = get_convo_var($convoArr,"conversation","default_aiml_pattern");
 	#$lookingfor = get_convo_var($convoArr,"aiml","lookingfor");
 	//$lookingfor = $_GET['say'];
-	$lookingfor = mysql_real_escape_string(get_convo_var($convoArr,"aiml","lookingfor"));
+	$lookingfor = mysql_escape_string(get_convo_var($convoArr,"aiml","lookingfor"));
 	runDebug( __FILE__, __FUNCTION__, __LINE__, get_convo_var($convoArr,"aiml","lookingfor"),2);
 	//get the first and last words of the cleaned user input
 	$lastInputWord = get_last_word($lookingfor);
 	$firstInputWord = get_first_word($lookingfor);
 
 	//get the stored topic
-	$storedtopic = mysql_real_escape_string(get_convo_var($convoArr,"topic"));
+	$storedtopic = mysql_escape_string(get_convo_var($convoArr,"topic"));
 		
 	//get the cleaned user input
 	$lastthat = get_convo_var($convoArr,'that','',1,1);

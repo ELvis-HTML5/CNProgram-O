@@ -13,8 +13,8 @@ if (!defined('SCRIPT_INSTALLED')) header('location: install_programo.php');
 if((isset($_POST['uname']))&&(isset($_POST['pw'])))
 {
 
-	$uname = mysql_real_escape_string(strip_tags(trim($_POST['uname'])));
-	$pw = mysql_real_escape_string(strip_tags(trim($_POST['pw'])));
+	$uname = mysql_escape_string(strip_tags(trim($_POST['uname'])));
+	$pw = mysql_escape_string(strip_tags(trim($_POST['pw'])));
 	$dbconn = db_open();
 	$sql = "SELECT * FROM `$dbn`.`myprogramo` WHERE uname = '".$uname."' AND pword = '".MD5($pw)."'";
 

@@ -366,8 +366,8 @@ function log_conversation($convoArr){
     runDebug( __FILE__, __FUNCTION__, __LINE__, "logging the conversation turn in the db",4);        
         
     //clean and set
-    $usersay = mysql_real_escape_string($convoArr['aiml']['user_raw']);
-    $botsay = mysql_real_escape_string($convoArr['aiml']['parsed_template']);
+    $usersay = mysql_escape_string($convoArr['aiml']['user_raw']);
+    $botsay = mysql_escape_string($convoArr['aiml']['parsed_template']);
     $user_id = $convoArr['conversation']['user_id'];
     $bot_id = $convoArr['conversation']['bot_id'];
         
@@ -404,14 +404,14 @@ function log_conversation_state($convoArr){
 
     runDebug( __FILE__, __FUNCTION__, __LINE__, "logging state",4);        
         
-    $serialise_convo = mysql_real_escape_string(serialize($convoArr));
+    $serialise_convo = mysql_escape_string(serialize($convoArr));
     $user_id = $convoArr['conversation']['user_id'];
     $bot_id = $convoArr['conversation']['bot_id'];
         
     $client_name = get_convo_var($convoArr,'client_properties','name');
    if(isset($client_name) && ($client_name!=""))
    {
-   	$sql_addon = "`name` = '". mysql_real_escape_string($client_name)."', ";
+   	$sql_addon = "`name` = '". mysql_escape_string($client_name)."', ";
    }
    else
    {
@@ -446,7 +446,7 @@ function get_conversation_state($convoArr){
     global $con,$dbn;
     runDebug( __FILE__, __FUNCTION__, __LINE__, "getting state",4);
     //get converstation state from the db
-    $serialise_convo = mysql_real_escape_string(serialize($convoArr));
+    $serialise_convo = mysql_escape_string(serialize($convoArr));
     $user_id = $convoArr['conversation']['user_id'];
         
     $sql = "SELECT * FROM `$dbn`.`users` WHERE `id` = '$user_id' LIMIT 1"; 

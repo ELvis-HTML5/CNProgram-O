@@ -228,7 +228,7 @@ function updateBotSelection() {
   $msg = "";
   foreach($_POST as $key => $value) {
     if(($key!="bot_id")||($key!="action")) {
-      $value = mysql_real_escape_string(trim(stripslashes($value)));
+      $value = mysql_escape_string(trim(stripslashes($value)));
       if(($key != "bot_id")&&($key != "action")&&($value!="")) {
         $sql = "UPDATE `bots` SET `$key` ='$value' where `bot_id` = '".$_POST['bot_id']."' limit 1; ";
         $result = mysql_query($sql,$dbconn)or die('You have a SQL error on line '. __LINE__ . ' of ' . __FILE__ . '. Error message is: ' . mysql_error() . '.');
@@ -253,7 +253,7 @@ function addBot() {
   //db globals
   global $msg;
   foreach ($_POST as $key => $value) {
-    $$key = mysql_real_escape_string(trim($value));
+    $$key = mysql_escape_string(trim($value));
   }
   $dbconn = db_open();
   $sql = <<<endSQL
@@ -273,7 +273,7 @@ endSQL;
   $_SESSION['poadmin']['bot_id'] = mysql_insert_id();
   $bot_id = $_SESSION['poadmin']['bot_id'];
   $_SESSION['poadmin']['bot_name'] = $_POST['bot_name'];
-  $bot_name = mysql_real_escape_string($_SESSION['poadmin']['bot_name']);
+  $bot_name = mysql_escape_string($_SESSION['poadmin']['bot_name']);
 
   $sql = <<<endSQL
 INSERT INTO `botpersonality` VALUES

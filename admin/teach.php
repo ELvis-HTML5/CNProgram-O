@@ -87,13 +87,13 @@ function insertAIML() {
   global $template, $msg;
   $dbconn = db_open();
   $aiml = "<category><pattern>[pattern]</pattern>[thatpattern]<template>[template]</template></category>";
-  $aimltemplate = formatchinese(mysql_real_escape_string(trim($_POST['template'])));
-  $pattern = formatchinese(strtoupper(mysql_real_escape_string(trim($_POST['pattern']))));
-  $thatpattern = formatchinese(strtoupper(mysql_real_escape_string(trim($_POST['thatpattern']))));
+  $aimltemplate = formatchinese(mysql_escape_string(trim($_POST['template'])));
+  $pattern = formatchinese(strtoupper(mysql_escape_string(trim($_POST['pattern']))));
+  $thatpattern = formatchinese(strtoupper(mysql_escape_string(trim($_POST['thatpattern']))));
   $aiml = str_replace('[pattern]', $pattern, $aiml);
   $aiml = (empty($thatpattern)) ? str_replace('[thatpattern]', "<that>$thatpattern</that>", $aiml) : $aiml;
   $aiml = formatchinese(str_replace('[template]', $aimltemplate, $aiml));
-  $topic = formatchinese(strtoupper(mysql_real_escape_string(trim($_POST['topic']))));
+  $topic = formatchinese(strtoupper(mysql_escape_string(trim($_POST['topic']))));
   $bot_id = (isset($_SESSION['poadmin']['bot_id'])) ? $_SESSION['poadmin']['bot_id'] : 1;
   if(($pattern=="") || ($template=="")) {
     $msg = 'You must enter a user input and bot response.';
