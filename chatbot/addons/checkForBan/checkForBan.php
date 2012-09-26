@@ -6,7 +6,7 @@
   /* address that were banned, aborting the script   */
   /* if the address is found, and notifying the user */
   /* of the ban.                                     */
-  /* ©2011 Geek Cave Creations - All rights Reserved */
+  /* Â©2011 Geek Cave Creations - All rights Reserved */
   /*                  Coded by Dave                  */
   /***************************************************/
 

@@ -74,11 +74,11 @@
     $i=0;
     $searchTermsTemplate = " like '[value]' or\n  ";
     $searchTerms = '';
-    $search_topic    = mysql_escape_string(trim($_POST['search_topic']));
-    $search_filename = mysql_escape_string(trim($_POST['search_filename']));
-    $search_pattern  = mysql_escape_string(trim($_POST['search_pattern']));
-    $search_template = mysql_escape_string(trim($_POST['search_template']));
-    $search_that     = mysql_escape_string(trim($_POST['search_that']));
+    $search_topic    = mysql_real_escape_string(trim($_POST['search_topic']));
+    $search_filename = mysql_real_escape_string(trim($_POST['search_filename']));
+    $search_pattern  = mysql_real_escape_string(trim($_POST['search_pattern']));
+    $search_template = mysql_real_escape_string(trim($_POST['search_template']));
+    $search_that     = mysql_real_escape_string(trim($_POST['search_that']));
     if(!empty($search_topic) or !empty($search_filename) or !empty($search_pattern) or !empty($search_template) or !empty($search_that)) {
       $sql = "SELECT * FROM `aiml` WHERE `bot_id` = '$bot_id'  AND (\n  [searchTerms]\n) LIMIT 50;";
       $searchTerms .= (!empty($search_topic)) ? '`topic`' . str_replace('[value]', $search_topic, $searchTermsTemplate) : '';
@@ -114,10 +114,10 @@ endtHead;
         $id = $row['id'];
         $action = <<<endLink
           <a href="./?page=search&amp;action=edit&amp;id=$id">
-            <img src="images/edit.png" border=0 width="15" height="15" />
+            <img src="images/edit.png" border=0 width="15" height="15" alt="Edit this entry" title="Edit this entry" />
           </a>
           <a href="./?page=search&amp;action=del&amp;id=$id" onclick="return confirm('Do you really want to delete this AIML record? You will not be able to undo this!')";>
-            <img src="images/del.png" border=0 width="15" height="15"/>
+            <img src="images/del.png" border=0 width="15" height="15" alt="Delete this entry" title="Delete this entry" />
           </a>
 endLink;
 
@@ -180,11 +180,11 @@ endRow;
   function updateAIML() {
   //db globals
     $dbconn = db_open();
-    $template = mysql_escape_string(trim($_POST['template']));
-    $filename = mysql_escape_string(trim($_POST['filename']));
-    $pattern = strtoupper(mysql_escape_string(trim($_POST['pattern'])));
-    $thatpattern = strtoupper(mysql_escape_string(trim($_POST['thatpattern'])));
-    $topic = strtoupper(mysql_escape_string(trim($_POST['topic'])));
+    $template = mysql_real_escape_string(trim($_POST['template']));
+    $filename = mysql_real_escape_string(trim($_POST['filename']));
+    $pattern = strtoupper(mysql_real_escape_string(trim($_POST['pattern'])));
+    $thatpattern = strtoupper(mysql_real_escape_string(trim($_POST['thatpattern'])));
+    $topic = strtoupper(mysql_real_escape_string(trim($_POST['topic'])));
     $id = trim($_POST['id']);
     if(($template == "")||($pattern== "")||($id=="")) {
       $msg =  'Please make sure you have entered a user input and bot response ';

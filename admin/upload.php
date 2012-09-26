@@ -9,6 +9,7 @@
 // upload.php
   ini_set('memory_limit','128M');
   ini_set('max_execution_time','0');
+  ini_set('display_errors','1');
   libxml_use_internal_errors(true);
 
   $file = (array_key_exists('aimlfile', $_FILES)) ? processUpload() : '';
@@ -65,6 +66,7 @@ endScript;
   $full_path = "";
   $cat_counter = 0;
   $AIML_List = getAIML_List();
+  $all_bots  = getBotList();
   $uploadContent = $template->getSection('UploadAIMLForm');
   $showHelp      = $template->getSection('UploadShowHelp');
 
@@ -84,14 +86,17 @@ endScript;
   $pageTitle     = 'My-Program O - Upload AIML';
   $mainContent   = $template->getSection('UploadMain');
   $mainTitle     = "Upload AIML to use for the bot named $bot_name [helpLink]";
-
+  #$msg = (empty($msg)) ? 'Test' : $msg;
   $mainContent   = str_replace('[bot_name]', $bot_name, $mainContent);
+  $mainContent   = str_replace('[mainTitle]', $mainTitle, $mainContent);
   $mainContent   = str_replace('[upload_content]', $uploadContent, $mainContent);
   $mainContent   = str_replace('[showHelp]', $showHelp, $mainContent);
   $mainContent   = str_replace('[AIML_List]', $AIML_List, $mainContent);
+  $mainContent   = str_replace('[all_bots]', $all_bots, $mainContent);
   $mainTitle     = str_replace('[helpLink]', $template->getSection('HelpLink'), $mainTitle);
+  $mainTitle     = str_replace('[errMsg]', $msg, $mainTitle);
 
-  function parseAIML ($file) {
+  function parseAIML($file) {
     if (empty($file)) return "";
     global $debugmode, $bot_id;
     $fileName = basename($file);
@@ -102,39 +107,36 @@ endScript;
     if(isset($_POST['clearDB'])) {
       $x = updateDB($sql);
     }
+    $myBot_id = (isset($_POST['bot_id'])) ? $_POST['bot_id'] : $bot_id;
     # Read new file into the XML parser
     $fileName = basename($file);
     $sql_start = "insert into `aiml` (`id`, `bot_id`, `aiml`, `pattern`, `thatpattern`, `template`, `topic`, `filename`, `php_code`) values\n";
     $sql = $sql_start;
-    $sql_template = "(NULL, $bot_id, '[aiml_add]', '[pattern]', '[that]', '[template]', '[topic]', '$fileName', ''),\n";
+    $sql_template = "(NULL, $myBot_id, '[aiml_add]', '[pattern]', '[that]', '[template]', '[topic]', '$fileName', ''),\n";
     # Validate the incoming document
+    #die("sql = $sql_template");
 /*
 $xml = new DOMDocument();
 $xml->load('./lures.xml');
 */
-    $aimlFile = file_get_contents($file);
-    $validRootTag = '<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1">';
-    $curRootTagStart = stripos($aimlFile,'<aiml',0);
-    $curRootTagEnd   = strpos($aimlFile,'>', $curRootTagStart) + 1;
-    $curRootTagLen   = $curRootTagEnd - $curRootTagStart;
-    $curRootTag      = substr($aimlFile, $curRootTagStart, $curRootTagLen);
-    if ($curRootTag !== $validRootTag) $aimlFile = str_ireplace($curRootTag, $validRootTag, $aimlFile);
-    #die("<pre>$aimlFile</pre>\n");
-    $validate = new DOMDocument();
-    $validate->loadXML($aimlFile);
-    $validate->preserveWhiteSpace = false;
-    $validate->formatOutput = true;
-    if (!$validate->schemaValidate('./aiml.xsd')) {
-      $msg = "Cannot parse file $file! Please note errors that follow:\n";
 
-      $errors = libxml_get_errors();
-    foreach ($errors as $error) {
-      $msg .= libxml_display_error($error);
-    }
-    libxml_clear_errors();
-    return $msg;
-    }
+     /*******************************************************/
+    /*       Set up for validation from a common DTD       */
+   /*       This will involve removing the XML and        */
+  /*       AIML tags from the beginning of the file      */
+ /*       and replacing them with our own tags          */
+/*******************************************************/
+    $aimlContent = file_get_contents($file);
+    $validAIMLHeader = '<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE aiml PUBLIC "-//W3C//DTD Specification Version 1.0//EN" "http://www.geekcavecreations.com/xml/aiml.dtd">
+<!--DOCTYPE aiml SYSTEM "../config/aiml.dtd"-->
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1">';
+    $aimlTagStart = stripos($aimlContent,'<aiml',0);
+    $aimlTagEnd   = strpos($aimlContent,'>', $aimlTagStart) + 1;
+    $aimlFile     = $validAIMLHeader . substr($aimlContent,$aimlTagEnd);
+    try {
     $aiml = new SimpleXMLElement($aimlFile);
+    #$aiml = new SimpleXMLElement($aimlContent);
     $rowCount = 0;
     if (!empty($aiml->topic)) {
       foreach ($aiml->topic as $topicXML) { # handle any topic tag(s) in the file
@@ -150,10 +152,10 @@ $xml->load('./lures.xml');
           $template = str_replace('</template>', '', $template);
           $aiml_add = str_replace("\r\n", '', $fullCategory); # Strip CRLF from category (windows)
           $aiml_add = str_replace("\n", '', $aiml_add);       # Strip LF from category (mac/*nix)
-          $sql_add  = str_replace('[aiml_add]', mysql_escape_string($aiml_add), $sql_template);
+          $sql_add  = str_replace('[aiml_add]', mysql_real_escape_string($aiml_add), $sql_template);
           $sql_add  = str_replace('[pattern]',  $pattern,  $sql_add);
           $sql_add  = str_replace('[that]',     $that,     $sql_add);
-          $sql_add  = str_replace('[template]', mysql_escape_string($template), $sql_add);
+          $sql_add  = str_replace('[template]', mysql_real_escape_string($template), $sql_add);
           $sql_add  = str_replace('[topic]',    $topic,    $sql_add);
           $sql .= "$sql_add";
           $rowCount++;
@@ -176,10 +178,10 @@ $xml->load('./lures.xml');
         $template = str_replace('</template>', '', $template);
         $aiml_add = str_replace("\r\n", '', $fullCategory); # Strip CRLF from category (windows)
         $aiml_add = str_replace("\n", '', $aiml_add);       # Strip LF from category (mac/*nix)
-        $sql_add  = str_replace('[aiml_add]', mysql_escape_string($aiml_add), $sql_template);
+        $sql_add  = str_replace('[aiml_add]', mysql_real_escape_string($aiml_add), $sql_template);
         $sql_add  = str_replace('[pattern]',  $pattern,  $sql_add);
         $sql_add  = str_replace('[that]',     $that,     $sql_add);
-        $sql_add  = str_replace('[template]', mysql_escape_string($template), $sql_add);
+        $sql_add  = str_replace('[template]', mysql_real_escape_string($template), $sql_add);
         $sql_add  = str_replace('[topic]',    '',    $sql_add);
         $sql .= "$sql_add";
         $rowCount++;
@@ -195,7 +197,11 @@ $xml->load('./lures.xml');
       $sql = rtrim($sql, ",\n") . ';';
       $success = (updateDB($sql) >=0) ? true : false;
     }
-    $msg = "There was a problem adding file $fileName to the database.";
+    }
+    catch(Exception $e) {
+      $success = false;
+    }
+    $msg = "There was a problem adding file $fileName to the database. Please validate the file and try again.";
     if ($success) $msg = "Successfully added $fileName to the database.";
     return $msg;
   }
@@ -233,14 +239,15 @@ $xml->load('./lures.xml');
         $msg = 'There was an error moving the file.';
       }
     }
-    die($msg);
+    //die($msg);
+    $_SESSION['errorMessage'] = $msg;
   }
 
     function getAIML_List() {
-    global $dbn;
+    global $dbn, $bot_id;
     $out = "                  <!-- Start List of Currently Stored AIML files -->\n";
     $dbconn = db_open();
-    $sql = 'SELECT DISTINCT filename FROM aiml order by filename;';
+    $sql = "SELECT DISTINCT filename FROM `aiml` where `bot_id` = $bot_id order by `filename`;";
     $result = mysql_query($sql,$dbconn) or die(mysql_error());
     while ($row = mysql_fetch_assoc($result)) {
       if (empty($row['filename'])) {
@@ -251,6 +258,22 @@ $xml->load('./lures.xml');
     mysql_close($dbconn);
     $out .= "                  <!-- End List of Currently Stored AIML files -->\n";
     return $out;
+  }
+
+    function getBotList() {
+    global $dbn, $bot_id;
+    $botOptions = '';
+    $dbconn = db_open();
+    $sql = 'SELECT `bot_name`, `bot_id` FROM `bots` order by `bot_id`;';
+    $result = mysql_query($sql,$dbconn) or die(mysql_error());
+    while ($row = mysql_fetch_assoc($result)) {
+      $bn = $row['bot_name'];
+      $bi = $row['bot_id'];
+      $sel = ($bot_id == $bi) ? ' selected="selected"' : '';
+      $botOptions .= "                    <option$sel value=\"$bi\">$bn</option>\n";
+    }
+    mysql_close($dbconn);
+    return $botOptions;
   }
 
   function libxml_display_error($error) {

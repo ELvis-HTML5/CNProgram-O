@@ -23,7 +23,7 @@ function clean_for_aiml_match($text)
 	$text= whitespace_clean($text);
 	$text= captialise($text);
 	
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",3);
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",4);
 		
 	return $text;
 }
@@ -39,7 +39,7 @@ function whitespace_clean($text)
 	$otext = $text;
 	$text = preg_replace('/\s\s+/', ' ', $text);
 	
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",3);
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",4);
 	
 	return trim($text);	
 }
@@ -52,10 +52,11 @@ function whitespace_clean($text)
 **/
 function remove_allpuncutation($text)
 {
+	return $text;
 	$otext = $text;
-	$text = preg_replace('/[^a-zA-Z0-9|+|-|\*|Š|š|Ž|ž|À|Á|Â|Ã|Ä|Å|Æ|Ç|È|É|Ê|Ë|Ì|Í|Î|Ï|Ñ|Ò|Ó|Ô|Õ|Ö|Ø|Ù|Ú|Û|Ü|Ý|Þ|ß|à|á|â|ã|ä|å|æ|ç|è|é|ê|ë|ì|í|î|ï|ð|ñ|ò|ó|ô|õ|ö|ø|ù|ú|û|ý|þ|ÿ]/is', ' ', $text);
+	$text = preg_replace('/[^a-zA-Z0-9|+|-|\*|Å |Å¡|Å½|Å¾|Ã€|Ã�|Ã‚|Ãƒ|Ã„|Ã…|Ã†|Ã‡|Ãˆ|Ã‰|ÃŠ|Ã‹|ÃŒ|Ã�|ÃŽ|Ã�|Ã‘|Ã’|Ã“|Ã”|Ã•|Ã–|Ã˜|Ã™|Ãš|Ã›|Ãœ|Ã�|Ãž|ÃŸ|Ã |Ã¡|Ã¢|Ã£|Ã¤|Ã¥|Ã¦|Ã§|Ã¨|Ã©|Ãª|Ã«|Ã¬|Ã­|Ã®|Ã¯|Ã°|Ã±|Ã²|Ã³|Ã´|Ãµ|Ã¶|Ã¸|Ã¹|Ãº|Ã»|Ã½|Ã¾|Ã¿]/is', ' ', $text);
 	
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",3);
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",4);
 	
 	return $text;
 }
@@ -68,10 +69,11 @@ function remove_allpuncutation($text)
 **/
 function remove_puncutation($text)
 {	
+	return $text;
 	$otext = $text;
-	$text = preg_replace('/[^a-zA-Z0-9|+|-|*|\/|\.|?|!|Š|š|Ž|ž|À|Á|Â|Ã|Ä|Å|Æ|Ç|È|É|Ê|Ë|Ì|Í|Î|Ï|Ñ|Ò|Ó|Ô|Õ|Ö|Ø|Ù|Ú|Û|Ü|Ý|Þ|ß|à|á|â|ã|ä|å|æ|ç|è|é|ê|ë|ì| í|î|ï|ð|ñ|ò|ó|ô|õ|ö|ø|ù|ú|û|ý|þ|ÿ]/i', ' ', $text);
+	$text = preg_replace('/[^a-zA-Z0-9|+|-|*|\/|\.|?|!|Å |Å¡|Å½|Å¾|Ã€|Ã�|Ã‚|Ãƒ|Ã„|Ã…|Ã†|Ã‡|Ãˆ|Ã‰|ÃŠ|Ã‹|ÃŒ|Ã�|ÃŽ|Ã�|Ã‘|Ã’|Ã“|Ã”|Ã•|Ã–|Ã˜|Ã™|Ãš|Ã›|Ãœ|Ã�|Ãž|ÃŸ|Ã |Ã¡|Ã¢|Ã£|Ã¤|Ã¥|Ã¦|Ã§|Ã¨|Ã©|Ãª|Ã«|Ã¬| Ã­|Ã®|Ã¯|Ã°|Ã±|Ã²|Ã³|Ã´|Ãµ|Ã¶|Ã¸|Ã¹|Ãº|Ã»|Ã½|Ã¾|Ã¿]/i', ' ', $text);
 	
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",3);
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",4);
 	
 	return $text;
 }
@@ -87,7 +89,7 @@ function captialise($text)
 	$otext = $text;
 	$text = strtoupper($text);
 	
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",3);
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",4);
 	
 	return $text;
 }

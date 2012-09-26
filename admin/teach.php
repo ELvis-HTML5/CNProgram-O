@@ -74,22 +74,32 @@ endScript;
     $mainContent   = str_replace('[showHelp]', $showHelp, $mainContent);
     $mainTitle   = str_replace('[helpLink]', $template->getSection('HelpLink'), $mainTitle);
 
-
+function formatchinese($str){
+	if(preg_match_all("/[\x{4e00}-\x{9fa5}]{1}/u",$str,$out)){
+		foreach($out[0] as $value){
+			$str = preg_replace("/".$value."/",$value." ",$str);
+		}
+	}
+	return trim(preg_replace("/\s+/"," ",$str));
+}
 function insertAIML() {
   //db globals
   global $template, $msg;
   $dbconn = db_open();
-
-  $template = mysql_escape_string(trim($_POST['template']));
-  $pattern = strtoupper(mysql_escape_string(trim($_POST['pattern'])));
-  $thatpattern = strtoupper(mysql_escape_string(trim($_POST['thatpattern'])));
-  $topic = strtoupper(mysql_escape_string(trim($_POST['topic'])));
-  $bot_id = (isset($_SESSION['poadmin']['bot_id'])) ? $_SESSION['poadmin']['bot_id'] : 0;
+  $aiml = "<category><pattern>[pattern]</pattern>[thatpattern]<template>[template]</template></category>";
+  $aimltemplate = formatchinese(mysql_real_escape_string(trim($_POST['template'])));
+  $pattern = formatchinese(strtoupper(mysql_real_escape_string(trim($_POST['pattern']))));
+  $thatpattern = formatchinese(strtoupper(mysql_real_escape_string(trim($_POST['thatpattern']))));
+  $aiml = str_replace('[pattern]', $pattern, $aiml);
+  $aiml = (empty($thatpattern)) ? str_replace('[thatpattern]', "<that>$thatpattern</that>", $aiml) : $aiml;
+  $aiml = formatchinese(str_replace('[template]', $aimltemplate, $aiml));
+  $topic = formatchinese(strtoupper(mysql_real_escape_string(trim($_POST['topic']))));
+  $bot_id = (isset($_SESSION['poadmin']['bot_id'])) ? $_SESSION['poadmin']['bot_id'] : 1;
   if(($pattern=="") || ($template=="")) {
     $msg = 'You must enter a user input and bot response.';
   }
   else {
-    $sql = "INSERT INTO `aiml` (`id`,`bot_id`, `pattern`,`thatpattern`,`template`,`topic`,`filename`) VALUES (NULL,'$bot_id','$pattern','$thatpattern','$template','$topic','ADMIN ADDED')";
+    $sql = "INSERT INTO `aiml` (`id`,`bot_id`, `aiml`, `pattern`,`thatpattern`,`template`,`topic`,`filename`, `php_code`) VALUES (NULL,'$bot_id', '$aiml','$pattern','$thatpattern','$aimltemplate','$topic','admin_added.aiml', '')";
     $result = mysql_query($sql,$dbconn)or die('You have a SQL error on line '. __LINE__ . ' of ' . __FILE__ . '. Error message is: ' . mysql_error() . ".<br />\nSQL = $sql<br />\n");
 
     if($result) {

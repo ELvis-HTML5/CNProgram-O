@@ -1,32 +1,38 @@
-<?php
-include("../../chatbot/conversation_start.php");
+<?php 
+  /***************************************
+  * http://www.program-o.com
+  * PROGRAM O
+  * Version: 2.0.1
+  * FILE: gui/plain/index_better_divs.php
+  * AUTHOR: ELIZABETH PERREAU
+  * DATE: 19 JUNE 2012
+  * DETAILS: simple example gui
+  ***************************************/
+  
+  $display = "";
+  
+  require_once('../../config/global_config.php');  
+  require_once('../chatbot/conversation_start.php');			
 
-if(isset($_REQUEST['bot_id']))
-{
-  $bot_id = $_REQUEST['bot_id'];
-}
-else
-{
-  $bot_id = $default_bot_id;
+if(isset($_REQUEST['bot_id'])){
+	$bot_id = $_REQUEST['bot_id'];
+}else{
+	$bot_id = 1;
 }
 
-if(isset($_REQUEST['convo_id']))
-{
-  $convo_id = $_REQUEST['convo_id'];
-}
-else
-{
-  $convo_id = $default_convo_id;
+if(isset($_REQUEST['convo_id'])){
+	$convo_id = $_REQUEST['convo_id'];
+}else{
+	//session started in the conversation_start.php
+	$convo_id = session_id();
 }
 
-if(isset($_REQUEST['format']))
-{
-  $format = $_REQUEST['format'];
+if(isset($_REQUEST['format'])){
+	$format = $_REQUEST['format'];
+}else{
+	$format = "html";
 }
-else
-{
-  $format = $default_format;
-}
+
 
 $output = (isset($convoArr['send_to_user'])) ? $convoArr['send_to_user'] . ' <br /> <a name="new" />' : "";
 $thisScript = $_SERVER['SCRIPT_NAME'] . '#new';
@@ -39,7 +45,7 @@ $content = <<<endHTML
   <head>
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style type="text/css">
     #output {
       overflow: auto;

@@ -1,0 +1,145 @@
+[12-Sep-2012 03:19:12 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\index.php on line 82
+[12-Sep-2012 03:19:12 UTC] PHP Stack trace:
+[12-Sep-2012 03:19:12 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:19:12 UTC] PHP   2. mysql_escape_string() C:\wamp\www\Program-O\admin\index.php:82
+[12-Sep-2012 03:19:12 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\index.php on line 83
+[12-Sep-2012 03:19:12 UTC] PHP Stack trace:
+[12-Sep-2012 03:19:12 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:19:12 UTC] PHP   2. mysql_escape_string() C:\wamp\www\Program-O\admin\index.php:83
+[12-Sep-2012 03:19:16 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\index.php on line 82
+[12-Sep-2012 03:19:16 UTC] PHP Stack trace:
+[12-Sep-2012 03:19:16 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:19:16 UTC] PHP   2. mysql_escape_string() C:\wamp\www\Program-O\admin\index.php:82
+[12-Sep-2012 03:19:16 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\index.php on line 83
+[12-Sep-2012 03:19:16 UTC] PHP Stack trace:
+[12-Sep-2012 03:19:16 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:19:16 UTC] PHP   2. mysql_escape_string() C:\wamp\www\Program-O\admin\index.php:83
+[12-Sep-2012 03:19:20 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\index.php on line 82
+[12-Sep-2012 03:19:20 UTC] PHP Stack trace:
+[12-Sep-2012 03:19:20 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:19:20 UTC] PHP   2. mysql_escape_string() C:\wamp\www\Program-O\admin\index.php:82
+[12-Sep-2012 03:19:20 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\index.php on line 83
+[12-Sep-2012 03:19:20 UTC] PHP Stack trace:
+[12-Sep-2012 03:19:20 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:19:20 UTC] PHP   2. mysql_escape_string() C:\wamp\www\Program-O\admin\index.php:83
+[12-Sep-2012 03:20:16 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 83
+[12-Sep-2012 03:20:16 UTC] PHP Stack trace:
+[12-Sep-2012 03:20:16 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:20:16 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:20:16 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:20:16 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:83
+[12-Sep-2012 03:20:16 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 84
+[12-Sep-2012 03:20:16 UTC] PHP Stack trace:
+[12-Sep-2012 03:20:16 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:20:16 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:20:16 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:20:16 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:84
+[12-Sep-2012 03:20:16 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 85
+[12-Sep-2012 03:20:16 UTC] PHP Stack trace:
+[12-Sep-2012 03:20:16 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:20:16 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:20:16 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:20:16 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:85
+[12-Sep-2012 03:20:16 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 89
+[12-Sep-2012 03:20:16 UTC] PHP Stack trace:
+[12-Sep-2012 03:20:16 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:20:16 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:20:16 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:20:16 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:89
+[12-Sep-2012 03:22:02 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 83
+[12-Sep-2012 03:22:02 UTC] PHP Stack trace:
+[12-Sep-2012 03:22:02 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:22:02 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:22:02 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:22:02 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:83
+[12-Sep-2012 03:22:02 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 84
+[12-Sep-2012 03:22:02 UTC] PHP Stack trace:
+[12-Sep-2012 03:22:02 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:22:02 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:22:02 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:22:02 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:84
+[12-Sep-2012 03:22:02 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 85
+[12-Sep-2012 03:22:02 UTC] PHP Stack trace:
+[12-Sep-2012 03:22:02 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:22:02 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:22:02 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:22:02 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:85
+[12-Sep-2012 03:22:02 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 89
+[12-Sep-2012 03:22:02 UTC] PHP Stack trace:
+[12-Sep-2012 03:22:02 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:22:02 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:22:02 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:22:02 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:89
+[12-Sep-2012 03:26:15 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 83
+[12-Sep-2012 03:26:15 UTC] PHP Stack trace:
+[12-Sep-2012 03:26:15 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:26:15 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:26:15 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:26:15 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:83
+[12-Sep-2012 03:26:15 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 84
+[12-Sep-2012 03:26:15 UTC] PHP Stack trace:
+[12-Sep-2012 03:26:15 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:26:15 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:26:15 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:26:15 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:84
+[12-Sep-2012 03:26:15 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 85
+[12-Sep-2012 03:26:15 UTC] PHP Stack trace:
+[12-Sep-2012 03:26:15 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:26:15 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:26:15 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:26:15 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:85
+[12-Sep-2012 03:26:15 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 89
+[12-Sep-2012 03:26:15 UTC] PHP Stack trace:
+[12-Sep-2012 03:26:15 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:26:15 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:26:15 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:26:15 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:89
+[12-Sep-2012 03:33:26 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\index.php on line 82
+[12-Sep-2012 03:33:26 UTC] PHP Stack trace:
+[12-Sep-2012 03:33:26 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:33:26 UTC] PHP   2. mysql_escape_string() C:\wamp\www\Program-O\admin\index.php:82
+[12-Sep-2012 03:33:26 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\index.php on line 83
+[12-Sep-2012 03:33:26 UTC] PHP Stack trace:
+[12-Sep-2012 03:33:26 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:33:26 UTC] PHP   2. mysql_escape_string() C:\wamp\www\Program-O\admin\index.php:83
+[12-Sep-2012 03:33:33 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 83
+[12-Sep-2012 03:33:33 UTC] PHP Stack trace:
+[12-Sep-2012 03:33:33 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:33:33 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:33:33 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:33:33 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:83
+[12-Sep-2012 03:33:33 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 84
+[12-Sep-2012 03:33:33 UTC] PHP Stack trace:
+[12-Sep-2012 03:33:33 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:33:33 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:33:33 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:33:33 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:84
+[12-Sep-2012 03:33:33 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 85
+[12-Sep-2012 03:33:33 UTC] PHP Stack trace:
+[12-Sep-2012 03:33:33 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:33:33 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:33:33 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:33:33 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:85
+[12-Sep-2012 03:33:33 UTC] PHP Deprecated:  mysql_escape_string(): This function is deprecated; use mysql_real_escape_string() instead. in C:\wamp\www\Program-O\admin\teach.php on line 89
+[12-Sep-2012 03:33:33 UTC] PHP Stack trace:
+[12-Sep-2012 03:33:33 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 03:33:33 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 03:33:33 UTC] PHP   3. insertAIML() C:\wamp\www\Program-O\admin\teach.php:46
+[12-Sep-2012 03:33:33 UTC] PHP   4. mysql_escape_string() C:\wamp\www\Program-O\admin\teach.php:89
+[12-Sep-2012 08:33:17 UTC] PHP Notice:  Undefined variable: bot_error_response in C:\wamp\www\Program-O\admin\select_bots.php on line 218
+[12-Sep-2012 08:33:17 UTC] PHP Stack trace:
+[12-Sep-2012 08:33:17 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\index.php:0
+[12-Sep-2012 08:33:17 UTC] PHP   2. include() C:\wamp\www\Program-O\admin\index.php:145
+[12-Sep-2012 08:33:17 UTC] PHP   3. getSelectedBot() C:\wamp\www\Program-O\admin\select_bots.php:21
+[17-Sep-2012 02:29:02 UTC] PHP Warning:  imagejpeg(): Filename cannot be empty in C:\wamp\www\Program-O\admin\captcha.php on line 193
+[17-Sep-2012 02:29:02 UTC] PHP Stack trace:
+[17-Sep-2012 02:29:02 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\captcha.php:0
+[17-Sep-2012 02:29:02 UTC] PHP   2. imagejpeg() C:\wamp\www\Program-O\admin\captcha.php:193
+[17-Sep-2012 02:29:07 UTC] PHP Warning:  imagejpeg(): Filename cannot be empty in C:\wamp\www\Program-O\admin\captcha.php on line 193
+[17-Sep-2012 02:29:07 UTC] PHP Stack trace:
+[17-Sep-2012 02:29:07 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\captcha.php:0
+[17-Sep-2012 02:29:07 UTC] PHP   2. imagejpeg() C:\wamp\www\Program-O\admin\captcha.php:193
+[17-Sep-2012 02:30:08 UTC] PHP Warning:  imagejpeg(): Filename cannot be empty in C:\wamp\www\Program-O\admin\captcha.php on line 193
+[17-Sep-2012 02:30:08 UTC] PHP Stack trace:
+[17-Sep-2012 02:30:08 UTC] PHP   1. {main}() C:\wamp\www\Program-O\admin\captcha.php:0
+[17-Sep-2012 02:30:08 UTC] PHP   2. imagejpeg() C:\wamp\www\Program-O\admin\captcha.php:193

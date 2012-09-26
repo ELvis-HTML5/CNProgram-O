@@ -45,7 +45,7 @@ $upperScripts = <<<endScript
       </script>
 endScript;
   foreach ($_POST as $key => $value) {
-    $$key = mysql_escape_string($value);
+    $$key = mysql_real_escape_string($value);
   }
   $func = (isset($_POST['func'])) ? $_POST['func'] : 'showBugForm';
 # Build page sections
@@ -106,7 +106,7 @@ endScript;
               </p>
             </td>
             <td align="center">
-              <img id="capImg" src="captcha.php" title="Captcha script ©2009-2011 Geek Cave Creations"><br />
+              <img id="capImg" src="captcha.php" title="Captcha script Â©2009-2011 Geek Cave Creations"><br />
               <input onclick="renewImage(); return false" value="Refresh" type="button">
             </td>
             <td>

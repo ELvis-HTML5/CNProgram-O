@@ -8,7 +8,9 @@
 //-----------------------------------------------------------------------------------------------
 // index.php
 
-  require_once("../config/global_config.php");
+  if (!file_exists('../config/global_config.php')) header('location: ../install/install_programo.php');
+  require_once('../config/global_config.php');
+
   error_reporting(E_ALL);
   ini_set('log_errors', true);
   ini_set('error_log', _ADMIN_PATH_ . 'error.log');
@@ -16,14 +18,9 @@
   ini_set('display_errors', false);
   $msg = '';
 
-  # Show errors on the dev server. Comment out or remove to disable.
-  if($server==$dev_host or ((!empty($alternate_local_server_name) and  $server == $alternate_local_server_name))) {
-    ini_set('display_errors', true);
-  }
-
 
   $bot_name = 'unknown';
-  $bot_id = 0;
+  $bot_id = 1;
   session_start();
   $myPage = (isset($_GET['myPage'])) ? $_GET['myPage'] : '';
   $hide_logo = (isset($_SESSION['display'])) ? $_SESSION['display'] : '';
@@ -82,8 +79,8 @@
 
   if((isset($_POST['uname']))&&(isset($_POST['pw']))) {
     $_SESSION['poadmin']['display'] = $hide_logo;
-    $uname = mysql_escape_string(strip_tags(trim($_POST['uname'])));
-    $pw = mysql_escape_string(strip_tags(trim($_POST['pw'])));
+    $uname = mysql_real_escape_string(strip_tags(trim($_POST['uname'])));
+    $pw = mysql_real_escape_string(strip_tags(trim($_POST['pw'])));
     $dbconn = db_open();
     $sql = "SELECT * FROM `myprogramo` WHERE uname = '".$uname."' AND pword = '".MD5($pw)."'";
     $result = mysql_query($sql,$dbconn) or $msg .= SQL_Error(mysql_errno());
@@ -162,7 +159,7 @@
   $errMsgStyle   = $template->getSection($errMsgClass);
 /* These are the most common template replacement tags used. Any additional
    replacement tags should be handled in the include file for the current page,
-   in a function named replaceTags(&$content). This function will alter the
+   in a function named replaceTags($content). This function will alter the
    $content variable directly, rather than change it and then return it.
 */
   $searches = array(
@@ -457,7 +454,7 @@ endFooter;
             $link = $item->link;
             $published_on = $item->pubDate;
             $description = $item->description;
-            $out .= "<h3><a href=\"$link\">$title</a></h3>\n";
+            $out .= "<h3><a target=\"_blank\" href=\"$link\">$title</a></h3>\n";
             $out .= "<p>$description</p>";
           }
         }

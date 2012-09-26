@@ -2,7 +2,7 @@
      /*******************************************************/
     /*                     CAPTCHA.php                     */
    /* Creates a simple security image, for bot prevention */
-  /*           ©2009-2011 Geek Cave Creations            */
+  /*           Â©2009-2011 Geek Cave Creations            */
  /*                Coded by Dave Morton                 */
 /*******************************************************/
   #session_name("programo"); // Optional - Change or delete as needed.

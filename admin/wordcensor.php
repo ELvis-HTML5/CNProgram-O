@@ -175,16 +175,13 @@ function insertWordCensor() {
     global $template, $msg;
     $dbconn = db_open();
 
-    $replace_with = mysql_escape_string(trim($_POST['replace_with']));
-    $word_to_censor = mysql_escape_string(trim($_POST['word_to_censor']));
+    $replace_with = mysql_real_escape_string(trim($_POST['replace_with']));
+    $word_to_censor = mysql_real_escape_string(trim($_POST['word_to_censor']));
 
     if(($replace_with == "") || ($word_to_censor == "")) {
         $msg = '        <div id="errMsg">You must enter a spelling mistake and the replace_with.</div>' . "\n";
     }
     else {
-/*
-INSERT INTO `morgaine`.`wordcensor` (`censor_id`, `word_to_censor`, `replace_with`, `bot_exclude`) VALUES (NULL, 'bitch', 'B***H', '');
-*/
         $sql = "INSERT INTO `wordcensor` (`censor_id`, `word_to_censor`, `replace_with`, `bot_exclude`) VALUES (NULL,'$word_to_censor','$replace_with', '')";
         $result = mysql_query($sql,$dbconn) or die('You have a SQL error on line '. __LINE__ . ' of ' . __FILE__ . '. Error message is: ' . mysql_error() . ".<br />\nSQL = $sql<br />\n");
 
@@ -225,7 +222,7 @@ function runWordCensorSearch() {
     global $template;
     $dbconn = db_open();
     $i=0;
-    $search = mysql_escape_string(trim($_POST['search']));
+    $search = mysql_real_escape_string(trim($_POST['search']));
     $sql = "SELECT * FROM `wordcensor` WHERE `word_to_censor` LIKE '%$search%' OR `replace_with` LIKE '%$search%' LIMIT 50";
     $result = mysql_query($sql,$dbconn)or die('You have a SQL error on line '. __LINE__ . ' of ' . __FILE__ . '. Error message is: ' . mysql_error() . ".<br />\nSQL = $sql<br />\n");
     $htmltbl = '<table>
@@ -243,8 +240,8 @@ function runWordCensorSearch() {
         $replace_with = strtoupper($row['replace_with']);
         $id = $row['censor_id'];
         $group = round(($id / 50));
-        $action = "<a href=\"./?page=wordcensor&amp;action=edit&amp;censor_id=$id&amp;group=$group#$id\"><img src=\"images/edit.png\" border=0 width=\"15\" height=\"15\" /></a>
-                    <a href=\"./?page=wordcensor&amp;action=delete&amp;censor_id=$id&amp;group=$group#$id\" onclick=\"return confirm('Do you really want to delete this entry? You will not be able to undo this!')\";><img src=\"images/del.png\" border=0 width=\"15\" height=\"15\"/></a>";
+        $action = "<a href=\"./?page=wordcensor&amp;action=edit&amp;censor_id=$id&amp;group=$group#$id\"><img src=\"images/edit.png\" border=0 width=\"15\" height=\"15\" alt=\"Edit this entry\" title=\"Edit this entry\" /></a>
+                    <a href=\"./?page=wordcensor&amp;action=delete&amp;censor_id=$id&amp;group=$group#$id\" onclick=\"return confirm('Do you really want to delete this entry? You will not be able to undo this!')\";><img src=\"images/del.png\" border=0 width=\"15\" height=\"15\" alt=\"Delete this entry\" title=\"Delete this entry\" /></a>";
         $htmltbl .= "<tr valign=top>
                             <td>$word_to_censor</td>
                             <td>$replace_with</td>
@@ -289,8 +286,8 @@ function updateWordCensor() {
   //global vars
   global $template, $msg;
   $dbconn = db_open();
-  $word_to_censor = mysql_escape_string(trim($_POST['word_to_censor']));
-  $replace_with = mysql_escape_string(trim($_POST['replace_with']));
+  $word_to_censor = mysql_real_escape_string(trim($_POST['word_to_censor']));
+  $replace_with = mysql_real_escape_string(trim($_POST['replace_with']));
   $id = trim($_POST['id']);
   if(($id=="")||($word_to_censor=="")||($replace_with=="")) {
     $msg = '<div id="errMsg">There was a problem editing the replace_with - no changes made.</div>';

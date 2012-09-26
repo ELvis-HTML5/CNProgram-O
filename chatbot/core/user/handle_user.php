@@ -18,9 +18,10 @@
 **/
 function load_new_client_defaults($convoArr)
 {
+	
 	//to do could put this in an array
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "Loading client defaults","3");
-	$convoArr['client_properties']['name'] = "my friend";
+	//todo check this out
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "Loading client defaults",1);
 	$convoArr['client_properties']['id'] = $_SERVER['REMOTE_ADDR'];
 	
 	return $convoArr;
@@ -35,7 +36,7 @@ function load_new_client_defaults($convoArr)
 function get_user_id($convoArr)
 {
 	//db globals
-	global $con,$dbn;
+	global $con,$dbn,$unknown_user;
 	
 	//get undefined defaults from the db
 	$sql = "SELECT * FROM `$dbn`.`users` WHERE `session_id` = '".$convoArr['conversation']['convo_id']."' limit 1";
@@ -46,6 +47,8 @@ function get_user_id($convoArr)
 	{
 		$row = mysql_fetch_array($result);
 		$convoArr['conversation']['user_id'] = $row['id'];
+    // add user name, if set
+		$convoArr['conversation']['user_name'] = (!empty($row['name'])) ? $row['name'] : (!empty($convoArr['client_properties']['name'])) ? $convoArr['client_properties']['name'] : $unknown_user;
 		$msg = "existing";
 	}
 	else
@@ -54,8 +57,8 @@ function get_user_id($convoArr)
 		$msg = "new";
 	}
 	
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "Getting $msg user id:".$convoArr['conversation']['user_id'],"1");
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "get_user_id SQL: $sql","2");
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "Getting $msg user id:".$convoArr['conversation']['user_id'],4);
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "get_user_id SQL: $sql",3);
 	return $convoArr;
 	
 }
@@ -69,31 +72,31 @@ function get_user_id($convoArr)
 function intisaliseUser($convo_id)
 {
 	//db globals
-	global $con,$dbn;
+	global $con,$dbn, $default_bot_id;
 	
 	$sr = "";
 	$sa = "";
 	$sb = "unknown browser";
 	
 	if(isset($_SERVER['REMOTE_ADDR'])){
-		$sa = mysql_escape_string($_SERVER['REMOTE_ADDR']);
+		$sa = mysql_real_escape_string($_SERVER['REMOTE_ADDR']);
 	} 
 	
 	if(isset($_SERVER['HTTP_REFERER'])){
-		$sr = mysql_escape_string($_SERVER['HTTP_REFERER']);
+		$sr = mysql_real_escape_string($_SERVER['HTTP_REFERER']);
 	}
 	
 	if(isset($_SERVER['HTTP_USER_AGENT'])){
-		$sb = mysql_escape_string($_SERVER['HTTP_USER_AGENT']);
+		$sb = mysql_real_escape_string($_SERVER['HTTP_USER_AGENT']);
 	}
 
-	$sql = "INSERT INTO `$dbn`.`users` (`id` ,`session_id` ,`chatlines` ,`ip` ,`referer` ,`browser` ,`date_logged_on` ,`last_update`)
-	VALUES ( NULL , '$convo_id', '0', '$sa', '$sr', '$sb', CURRENT_TIMESTAMP , '0000-00-00 00:00:00')";
+	$sql = "INSERT INTO `$dbn`.`users` (`id` ,`session_id`, `bot_id`, `chatlines` ,`ip` ,`referer` ,`browser` ,`date_logged_on` ,`last_update`)
+	VALUES ( NULL , '$convo_id', $default_bot_id, '0', '$sa', '$sr', '$sb', CURRENT_TIMESTAMP , '0000-00-00 00:00:00')";
 
 	mysql_query($sql,$con);
 	$user_id = mysql_insert_id($con);
 	
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "intisaliseUser #$user_id SQL: $sql","2");
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "intisaliseUser #$user_id SQL: $sql",3);
 	
 	return $user_id;
 }
