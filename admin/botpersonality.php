@@ -177,7 +177,7 @@ function updateBot() {
     $postVal = (isset($_POST[$name])) ? $_POST[$name] : '';
     if (!empty($postVal)) {
        if ($postVal != $value){
-        $changes[$id] = mysql_escape_string(stripslashes_deep($postVal));
+        $changes[$id] = stripslashes_deep($postVal);
         $additions[$id] = $name;
        }
     }
@@ -230,7 +230,7 @@ function addBotPersonality() {
       if (is_array($value)) {
         foreach ($value as $index => $fieldValue) {
           $field = $key[$fieldValue];
-          $fieldValue = mysql_escape_string(trim($fieldValue));
+          $fieldValue = trim($fieldValue);
           $tmpSQL = str_replace('[key]', $field, $sql2);
           $tmpSQL = str_replace('[value]', $fieldValue, $tmpSQL);
           $sql .= $tmpSQL;
@@ -238,7 +238,7 @@ function addBotPersonality() {
         continue;
       }
       else {
-        $value = mysql_escape_string(trim($value));
+        $value = trim($value);
         $tmpSQL = str_replace('[key]', $key, $sql2);
         $tmpSQL = str_replace('[value]', $value, $tmpSQL);
         $sql .= $tmpSQL;

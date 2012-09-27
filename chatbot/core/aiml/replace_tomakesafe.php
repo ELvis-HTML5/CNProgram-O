@@ -409,7 +409,7 @@ function foreignchar_replace($whichway,$text){
 			$k = $keys[$i];
 			$v = $values[$i];
 			
-			$t = htmlentities($text, ENT_QUOTES);
+			$t = htmlspecialchars($text, ENT_QUOTES);
 			
 			if($whichway=="encode"){
 				$t = str_replace($k,$v,$t);

@@ -180,11 +180,11 @@ endRow;
   function updateAIML() {
   //db globals
     $dbconn = db_open();
-    $template = mysql_escape_string(trim($_POST['template']));
-    $filename = mysql_escape_string(trim($_POST['filename']));
-    $pattern = strtoupper(mysql_escape_string(trim($_POST['pattern'])));
-    $thatpattern = strtoupper(mysql_escape_string(trim($_POST['thatpattern'])));
-    $topic = strtoupper(mysql_escape_string(trim($_POST['topic'])));
+    $template = trim($_POST['template']);
+    $filename = trim($_POST['filename']);
+    $pattern = strtoupper(trim($_POST['pattern']));
+    $thatpattern = strtoupper(trim($_POST['thatpattern']));
+    $topic = strtoupper(trim($_POST['topic']));
     $id = trim($_POST['id']);
     if(($template == "")||($pattern== "")||($id=="")) {
       $msg =  'Please make sure you have entered a user input and bot response ';

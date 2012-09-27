@@ -465,7 +465,7 @@ function expand_shorthand_to_longhand($convoArr)
 	runDebug( __FILE__, __FUNCTION__, __LINE__, "Expanding shorthand to longhand",4);
 	
 	$template = $convoArr['aiml']['template'];
-	$convoArr['aiml']['shorthand_template']=htmlentities($template);
+	$convoArr['aiml']['shorthand_template']=htmlspecialchars($template);
 	
 	$template = trim($template);
 	
@@ -487,7 +487,7 @@ function expand_shorthand_to_longhand($convoArr)
 
 	
 	$template = preg_replace($find, $replace, $template);	
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "Completed preg_replace expansion: ".htmlentities($template),4);
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "Completed preg_replace expansion: ".htmlspecialchars($template),4);
 
 
 	//TODO not sure if this is correct implementation of star if lots of problems will see about making changes in future releases
@@ -536,7 +536,7 @@ function expand_shorthand_to_longhand($convoArr)
 	$template = str_replace("<![CDATA[","</say><say>",$template);
 	$template = str_replace("]]>","</say><say>",$template);	
 
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "Completed str_replace expansion: ".htmlentities($template),4);
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "Completed str_replace expansion: ".htmlspecialchars($template),4);
 	
 	//this might actually have no aiml in it all so lets check.
 	if(substr($template, 0, 1)!="<") 
@@ -580,10 +580,10 @@ function expand_shorthand_to_longhand($convoArr)
 	//$template = preg_replace("#<say>([^<]*)<#si","<say>$1</say><",$template);	
 	$template = str_replace("</say></say>","</say>",$template);	
 	
-	runDebug( __FILE__, __FUNCTION__, __LINE__, "Completed Program O specific: ".htmlentities($template),4);
+	runDebug( __FILE__, __FUNCTION__, __LINE__, "Completed Program O specific: ".htmlspecialchars($template),4);
 	
 	$convoArr['aiml']['template']=$template;
-	$convoArr['aiml']['longhand_template']=htmlentities($template);	
+	$convoArr['aiml']['longhand_template']=htmlspecialchars($template);	
 	return $convoArr;
 }
 
@@ -681,7 +681,7 @@ function clean_client_properties($value)
 **/
 function select_random($random_options)
 {
-	//echo "HERE WITH ".htmlentities($random_options);
+	//echo "HERE WITH ".htmlspecialchars($random_options);
 	//initialise php code string
 	$str = "";
 	//check if there is another random in here
@@ -916,9 +916,9 @@ function make_learn($convoArr, $pattern, $template)
 	
 	$pattern = clean_for_aiml_match($pattern);
 	$aiml = "<learn> <category> <pattern> <eval>$pattern</eval> </pattern> <template> <eval>$template</eval> </template> </category> </learn>";
-	$aiml = mysql_escape_string($aiml);
-	$pattern = mysql_escape_string($pattern." "); 
-	$template = mysql_escape_string($template." "); 
+	$aiml = $aiml;
+	$pattern = $pattern." "; 
+	$template = $template." "; 
 	$u_id = $convoArr['conversation']['user_id'];
 	$bot_id = $convoArr['conversation']['bot_id'];
 	

@@ -45,7 +45,7 @@ $upperScripts = <<<endScript
       </script>
 endScript;
   foreach ($_POST as $key => $value) {
-    $$key = mysql_escape_string($value);
+    $$key = $value;
   }
   $func = (isset($_POST['func'])) ? $_POST['func'] : 'showBugForm';
 # Build page sections

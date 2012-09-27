@@ -21,7 +21,7 @@ function clean_for_aiml_match($text)
 	$otext = $text;
 	$text= remove_allpuncutation($text); //was not all before
 	$text= whitespace_clean($text);
-	$text= captialise($text);
+	//$text= captialise($text);
 	
 	runDebug( __FILE__, __FUNCTION__, __LINE__, "In: $otext Out:$text",4);
 		
