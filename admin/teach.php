@@ -112,7 +112,7 @@ function insertAIML() {
   }
   mysql_close($dbconn);
 
-  return $sql.$msg;
+  return $msg;
 }
 
 ?>
